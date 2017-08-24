@@ -3,9 +3,13 @@ package org.vaadin.simplemde;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.ui.AbstractJavaScriptComponent;
+import com.vaadin.ui.Component;
+import com.vaadin.util.ReflectTools;
 import org.vaadin.simplemde.client.SimpleMarkdownEditorServerRpc;
 import org.vaadin.simplemde.client.SimpleMarkdownEditorState;
 
+import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -23,12 +27,9 @@ public class SimpleMarkdownEditor extends AbstractJavaScriptComponent {
         /**
          * register the ServerRpc to the server-implementation in order to listen to it's calls
          */
-        registerRpc(new SimpleMarkdownEditorServerRpc() {
-
-            @Override
-            public void textChanged(String text) {
-                getState().markdownText = text;
-            }
+        registerRpc((SimpleMarkdownEditorServerRpc) text -> {
+            getState().markdownText = text;
+            SimpleMarkdownEditor.this.fireEvent(new ValueChangedEvent(SimpleMarkdownEditor.this));
         });
         setPrimaryStyleName("simplemde-editor");
     }
@@ -73,5 +74,35 @@ public class SimpleMarkdownEditor extends AbstractJavaScriptComponent {
         return (SimpleMarkdownEditorState) super.getState();
     }
 
+
+    public void addValueChangeListener(ValueChangeListener listener) {
+        this.addListener(ValueChangedEvent.class, listener, ValueChangeListener.ELEMENT_VALUE_CHANGED_METHOD);
+    }
+
+    public interface ValueChangeListener extends Serializable {
+
+        Method ELEMENT_VALUE_CHANGED_METHOD = ReflectTools
+                .findMethod(SimpleMarkdownEditor.ValueChangeListener.class, "valueChanged",
+                        ValueChangedEvent.class);
+
+        void valueChanged(ValueChangedEvent event);
+    }
+
+    public static class ValueChangedEvent extends Component.Event {
+
+
+        public ValueChangedEvent(SimpleMarkdownEditor source) {
+            super(source);
+        }
+
+        @Override
+        public SimpleMarkdownEditor getSource() {
+            return (SimpleMarkdownEditor) super.getSource();
+        }
+
+        public String getValue() {
+            return getSource().getValue();
+        }
+    }
 
 }

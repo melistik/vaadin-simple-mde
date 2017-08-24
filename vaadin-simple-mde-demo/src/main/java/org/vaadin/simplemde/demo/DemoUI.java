@@ -20,10 +20,12 @@ public class DemoUI extends UI {
 
     @Override
     protected void init(final VaadinRequest vaadinRequest) {
+
         SimpleMarkdownEditor editor = new SimpleMarkdownEditor();
         editor.setHideIcons(Arrays.asList(SimpleMarkdownToolbarIcon.GUIDE, SimpleMarkdownToolbarIcon.FULLSCREEN, SimpleMarkdownToolbarIcon.SIDE_BY_SIDE));
         editor.setValue("# Hello World \nwe can write markdown!");
         editor.setShowStatus(false);
+        editor.addValueChangeListener(e -> Notification.show(e.getValue(), Notification.Type.TRAY_NOTIFICATION));
         setContent(new MVerticalLayout()
                 .add(editor, 1)
                 .add(new MHorizontalLayout()
