@@ -6,6 +6,8 @@ import com.vaadin.ui.AbstractJavaScriptComponent;
 import org.vaadin.simplemde.client.SimpleMarkdownEditorServerRpc;
 import org.vaadin.simplemde.client.SimpleMarkdownEditorState;
 
+import java.util.List;
+
 /**
  * Vaadin wrapper for the JavaScript Plugin SimpleMDE (https://github.com/sparksuite/simplemde-markdown-editor)<br>
  *
@@ -42,6 +44,28 @@ public class SimpleMarkdownEditor extends AbstractJavaScriptComponent {
         } else {
             getState().markdownText = text;
         }
+    }
+
+    public void setHideIcons(List<SimpleMarkdownToolbarIcon> icons) {
+        getState().hideIcons = icons;
+    }
+
+    /**
+     * hide the status bar
+     *
+     * @param showStatus default true
+     */
+    public void setShowStatus(boolean showStatus) {
+        getState().showStatus = showStatus;
+    }
+
+    /**
+     * delay of text value changes
+     *
+     * @param changeTimeOut default 250
+     */
+    public void setChangeTimeOut(int changeTimeOut) {
+        getState().changeTimeOut = changeTimeOut;
     }
 
     @Override

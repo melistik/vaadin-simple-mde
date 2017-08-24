@@ -1,6 +1,10 @@
 package org.vaadin.simplemde.client;
 
 import com.vaadin.shared.ui.JavaScriptComponentState;
+import org.vaadin.simplemde.SimpleMarkdownToolbarIcon;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Transfer states to JavaScript connector
@@ -15,5 +19,7 @@ public class SimpleMarkdownEditorState extends JavaScriptComponentState {
     public boolean showStatus = true;
 
     public String markdownText = "";
+
+    public List<SimpleMarkdownToolbarIcon> hideIcons = new ArrayList<>();
 
 }
