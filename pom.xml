@@ -5,7 +5,7 @@
     <groupId>org.vaadin.addons</groupId>
     <artifactId>vaadin-simple-mde-root</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <modules>
         <module>vaadin-simple-mde</module>
@@ -60,7 +60,7 @@
         <connection>scm:git:git@github.com:melistik/vaadin-simple-mde.git</connection>
         <developerConnection>scm:git:git@github.com:melistik/vaadin-simple-mde.git</developerConnection>
         <url>https://github.com/melistik/vaadin-simple-mde.git</url>
-        <tag>vaadin-simple-mde-root-1.0.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>
