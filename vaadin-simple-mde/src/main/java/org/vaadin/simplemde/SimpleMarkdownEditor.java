@@ -18,7 +18,7 @@ import java.util.List;
  * @author Marten Prieß (http://www.rocketbase.io)
  * @version 1.0
  */
-@StyleSheet("vaadin://simplemde/simplemde.min.css")
+@StyleSheet("vaadin://simplemde/simplemde-1.0.2.min.css")
 @JavaScript({"vaadin://simplemde/simplemde.min.js", "SimpleMarkdownEditor.js"})
 public class SimpleMarkdownEditor extends AbstractJavaScriptComponent {
 
