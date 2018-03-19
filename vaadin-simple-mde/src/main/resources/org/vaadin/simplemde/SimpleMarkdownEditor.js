@@ -31,6 +31,8 @@ window.org_vaadin_simplemde_SimpleMarkdownEditor = function () {
       simplemde = new SimpleMDE({
         element: textarea,
         status: (state.showStatus ? ['lines', 'words', 'cursor'] : false),
+        spellChecker: state.spellChecker,
+        lineWrapping: state.lineWrapping,
         initialValue: state.markdownText,
         hideIcons: hideIcons
       })

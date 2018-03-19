@@ -61,6 +61,24 @@ public class SimpleMarkdownEditor extends AbstractJavaScriptComponent {
     }
 
     /**
+     * enable spell checker
+     *
+     * @param spellChecker default false
+     */
+    public void setSpellChecker(boolean spellChecker) {
+        getState().spellChecker = spellChecker;
+    }
+
+    /**
+     * disable line wrapping
+     *
+     * @param lineWrapping default true
+     */
+    public void setLineWrapping(boolean lineWrapping) {
+        getState().lineWrapping = lineWrapping;
+    }
+
+    /**
      * delay of text value changes
      *
      * @param changeTimeOut default 250

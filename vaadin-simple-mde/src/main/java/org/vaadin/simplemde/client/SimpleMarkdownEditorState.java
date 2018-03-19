@@ -18,6 +18,10 @@ public class SimpleMarkdownEditorState extends JavaScriptComponentState {
 
     public boolean showStatus = true;
 
+    public boolean spellChecker = false;
+
+    public boolean lineWrapping = true;
+
     public String markdownText = "";
 
     public List<SimpleMarkdownToolbarIcon> hideIcons = new ArrayList<>();
