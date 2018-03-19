@@ -231,7 +231,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     position: relative;
     background: #fff;
     overflow: auto;
-    height: 100%;
 }
 
 .CodeMirror-scroll {
