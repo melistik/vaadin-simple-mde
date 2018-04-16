@@ -10,6 +10,14 @@ window.org_vaadin_simplemde_SimpleMarkdownEditor = function () {
     }
   }
 
+  var managePreview = function (state) {
+    if (typeof simplemde !== 'undefined') {
+      if (typeof state.preview !== 'undefined' && state.preview !== null && state.preview !== simplemde.isPreviewActive()) {
+        simplemde.togglePreview()
+      }
+    }
+  }
+
   this.onStateChange = function () {
 
     var state = this.getState()
@@ -20,22 +28,28 @@ window.org_vaadin_simplemde_SimpleMarkdownEditor = function () {
 
       elem.appendChild(textarea)
 
-      var hideIcons = []
-      if (typeof state.hideIcons !== 'undefined') {
-        state.hideIcons.forEach(function (icon) {
-          hideIcons.push(icon.toLowerCase()
-                             .replace(/\_/gi, '-'))
-        })
-      }
-
-      simplemde = new SimpleMDE({
+      var config = {
         element: textarea,
         status: (state.showStatus ? ['lines', 'words', 'cursor'] : false),
         spellChecker: state.spellChecker,
         lineWrapping: state.lineWrapping,
-        initialValue: state.markdownText,
-        hideIcons: hideIcons
-      })
+        initialValue: state.markdownText
+      }
+      if (state.toolbar) {
+        var hideIcons = []
+        if (typeof state.hideIcons !== 'undefined') {
+          state.hideIcons.forEach(function (icon) {
+            hideIcons.push(icon.toLowerCase()
+              .replace(/\_/gi, '-'))
+          })
+        }
+
+        config.hideIcons = hideIcons
+      } else {
+        config.toolbar = false
+      }
+
+      simplemde = new SimpleMDE(config)
 
       if (!state.showStatus) {
         elem.classList.add('hidden-status')
@@ -46,9 +60,13 @@ window.org_vaadin_simplemde_SimpleMarkdownEditor = function () {
         timeout = setTimeout(function () {
           console.log()
           self.getRpcProxy()
-              .textChanged(simplemde.value())
+            .textChanged(simplemde.value())
         }, state.changeTimeOut)
       })
+
+      managePreview(state)
+    } else {
+      managePreview(state)
     }
 
   }

@@ -16,11 +16,15 @@ public class SimpleMarkdownEditorState extends JavaScriptComponentState {
 
     public int changeTimeOut = 250;
 
+    public boolean toolbar = true;
+
     public boolean showStatus = true;
 
     public boolean spellChecker = false;
 
     public boolean lineWrapping = true;
+
+    public Boolean preview = null;
 
     public String markdownText = "";
 

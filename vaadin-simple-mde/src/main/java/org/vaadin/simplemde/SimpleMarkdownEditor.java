@@ -79,6 +79,33 @@ public class SimpleMarkdownEditor extends AbstractJavaScriptComponent {
     }
 
     /**
+     * used to hide toolbar at all<br>
+     * in order to disable some use hideIcons
+     */
+    public void hideToolbar() {
+        getState().toolbar = false;
+    }
+
+    public boolean isPreview() {
+        return getState().preview != null ? getState().preview : false;
+    }
+
+    /**
+     * toggle previewMode
+     *
+     * @param preview default undefined/null
+     */
+    public void setPreview(boolean preview) {
+        getState().preview = preview;
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        getState().preview = true;
+    }
+
+    /**
      * delay of text value changes
      *
      * @param changeTimeOut default 250

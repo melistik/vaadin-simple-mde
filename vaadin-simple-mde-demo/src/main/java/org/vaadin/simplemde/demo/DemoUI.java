@@ -30,6 +30,7 @@ public class DemoUI extends UI {
                 .add(editor, 1)
                 .add(new MHorizontalLayout()
                         .add(new MButton("clear", e -> editor.setValue("")))
+                        .add(new MButton("preview", e -> editor.setPreview(!editor.isPreview())))
                         .add(new MButton("getValue", e -> Notification.show(editor.getValue()))))
                 .withSize(MSize.FULL_SIZE));
     }
