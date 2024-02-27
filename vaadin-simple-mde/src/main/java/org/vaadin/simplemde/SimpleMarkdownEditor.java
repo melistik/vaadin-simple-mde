@@ -119,7 +119,7 @@ public class SimpleMarkdownEditor extends AbstractJavaScriptComponent {
         return (SimpleMarkdownEditorState) super.getState();
     }
 
-
+    //FIXME: Modify this method if necessary and compile to newer version of Vaadin, as mentioned in issue #1
     public void addValueChangeListener(ValueChangeListener listener) {
         this.addListener(ValueChangedEvent.class, listener, ValueChangeListener.ELEMENT_VALUE_CHANGED_METHOD);
     }
